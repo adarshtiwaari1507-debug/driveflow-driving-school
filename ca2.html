@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adarsh Tiwari | DriveFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3f7f5;
+      --panel: #ffffff;
+      --panel-soft: #f8faf9;
+      --line: #e5ece8;
+      --text: #17312d;
+      --muted: #6d7b78;
+      --navy: #12303a;
+      --teal: #0a7d6f;
+      --teal-dark: #075c52;
+      --lime: #dffb80;
+      --danger: #c8433a;
+      --shadow: 0 18px 42px rgba(17, 38, 34, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "DM Sans", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body { line-height: 1.5; }
+    button, input { font: inherit; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 28px;
+      background: linear-gradient(135deg, var(--navy), #153b46);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(16, 36, 38, 0.12);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--lime);
+      color: var(--navy);
+      font-family: "Manrope", sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .brand-wrap strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-wrap small {
+      display: block;
+      color: #c9d9d4;
+      font-size: 0.77rem;
+      letter-spacing: 0.02em;
+    }
+
+    .ghost-btn {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      border-radius: 10px;
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .ghost-btn:hover { background: rgba(255, 255, 255, 0.12); }
+
+    .site-footer {
+      padding: 18px 30px 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      background: var(--bg);
+    }
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 80px);
+    }
+
+    .sidebar {
+      width: 228px;
+      padding: 22px 14px;
+      background: #112c34;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    #nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    #nav button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: transparent;
+      color: #dce8e5;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    #nav button:hover { background: rgba(255, 255, 255, 0.08); }
+
+    #nav button.active {
+      background: var(--lime);
+      color: var(--navy);
+      box-shadow: 0 10px 24px rgba(223, 251, 128, 0.2);
+    }
+
+    .main-area {
+      flex: 1;
+      padding: 30px 34px;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(1.8rem, 2.4vw, 2.5rem);
+      letter-spacing: -0.05em;
+    }
+
+    .muted {
+      margin-top: 6px;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search {
+      width: min(230px, 45vw);
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      color: var(--text);
+      outline: none;
+      transition: 0.15s ease;
+    }
+
+    .search:focus,
+    .form-grid input:focus {
+      border-color: #7bc2b1;
+      box-shadow: 0 0 0 4px rgba(10, 125, 111, 0.09);
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 16px;
+      background: var(--teal);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 12px 20px rgba(10, 125, 111, 0.18);
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary {
+      background: #edf2ef;
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 20px 18px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      right: -26px;
+      top: -28px;
+      background: rgba(10, 125, 111, 0.08);
+    }
+
+    .card:nth-child(2)::after { background: rgba(72, 99, 255, 0.08); }
+    .card:nth-child(3)::after { background: rgba(255, 172, 76, 0.10); }
+    .card:nth-child(4)::after { background: rgba(157, 118, 255, 0.10); }
+
+    .label, .number { position: relative; z-index: 1; }
+
+    .label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .number {
+      margin-top: 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      margin: 0 0 16px;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.15rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 0.87rem;
+    }
+
+    th {
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    td { color: var(--text); }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f9fbfa; }
+
+    .delete {
+      border: none;
+      border-radius: 8px;
+      padding: 6px 10px;
+      background: #fff0ee;
+      color: var(--danger);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .empty {
+      padding: 34px 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(12, 20, 22, 0.55);
+      z-index: 20;
+    }
+
+    .modal {
+      width: min(540px, 100%);
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 28px 70px rgba(10, 14, 17, 0.25);
+    }
+
+    .modal h2 {
+      margin: 0 0 18px;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-grid label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .form-grid input {
+      width: 100%;
+      margin-top: 7px;
+      padding: 10px 11px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      outline: none;
+      background: white;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 920px) {
+      .cards { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
+    }
+
+    @media (max-width: 700px) {
+      .layout { display: block; }
+
+      .sidebar {
+        width: 100%;
+        padding-bottom: 12px;
+      }
+
+      #nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      #nav button { min-width: 120px; }
+
+      .main-area { padding: 20px 16px 28px; }
+
+      .top-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .toolbar { width: 100%; }
+
+      .search {
+        flex: 1;
+        width: 100%;
+      }
+
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-wrap">
+      <span class="brand-mark">D</span>
+      <div>
+        <strong>Adarsh Tiwari</strong>
+        <small>DriveFlow Driving School</small>
+      </div>
+    </div>
+    <button class="ghost-btn" type="button">Owner: Adarsh Tiwari</button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav id="nav" aria-label="Main navigation"></nav>
+    </aside>
+
+    <main class="main-area">
+      <div id="app"></div>
+    </main>
+  </div>
+
+  <div class="modal-bg" id="modalBg" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 id="modalTitle">Add record</h2>
+      <form id="recordForm">
+        <div class="form-grid" id="formFields"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancelBtn">Cancel</button>
+          <button class="btn" type="submit">Save record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    © 2026 Adarsh Tiwari | DriveFlow Driving School Management
+  </footer>
+
+  <script>
+    const modules = {
+      students: {
+        title: "Students",
+        fields: ["Name", "Phone", "Email", "Level", "Status"]
+      },
+      instructors: {
+        title: "Instructors",
+        fields: ["Name", "Phone", "Specialty", "Availability"]
+      },
+      vehicles: {
+        title: "Vehicles",
+        fields: ["Registration", "Make / model", "Transmission", "Status"]
+      },
+      lessons: {
+        title: "Lessons",
+        fields: ["Course", "Instructor", "Batch", "Date (YYYY-MM-DD)", "Time", "Status"]
+      },
+      assessments: {
+        title: "Assessments",
+        fields: ["Student", "Date (YYYY-MM-DD)", "Assessment type", "Score", "Status"]
+      }
+    };
+
+    const seed = {
+      students: [
+        { id: 1, Name: "Aarav Singh", Phone: "555-0142", Email: "aarav@example.com", Level: "Beginner", Status: "Active" },
+        { id: 2, Name: "Meera Khan", Phone: "555-0177", Email: "meera@example.com", Level: "Intermediate", Status: "Progressing" }
+      ],
+      instructors: [
+        { id: 3, Name: "Sam Rivera", Phone: "555-0188", Specialty: "Defensive Driving", Availability: "Weekdays" },
+        { id: 4, Name: "Nia Patel", Phone: "555-0130", Specialty: "Road Safety", Availability: "Weekends" }
+      ],
+      vehicles: [
+        { id: 5, Registration: "DRV-102", "Make / model": "Toyota Corolla", Transmission: "Automatic", Status: "Available" },
+        { id: 6, Registration: "DRV-210", "Make / model": "Honda Civic", Transmission: "Manual", Status: "In use" }
+      ],
+      lessons: [
+        { id: 7, Course: "Beginner Driver Prep", Instructor: "Sam Rivera", Batch: "B-101", "Date (YYYY-MM-DD)": "2026-10-04", Time: "09:00 AM", Status: "Scheduled" },
+        { id: 8, Course: "Defensive Training", Instructor: "Nia Patel", Batch: "B-204", "Date (YYYY-MM-DD)": "2026-10-06", Time: "02:00 PM", Status: "Confirmed" }
+      ],
+      assessments: [
+        { id: 9, Student: "Aarav Singh", "Date (YYYY-MM-DD)": "2026-10-02", "Assessment type": "Road test", Score: "78%", Status: "Pass" },
+        { id: 10, Student: "Meera Khan", "Date (YYYY-MM-DD)": "2026-10-03", "Assessment type": "Theory", Score: "91%", Status: "Excellent" }
+      ]
+    };
+
+    let data = JSON.parse(localStorage.getItem("driveflow-data") || "null") || seed;
+    let current = "dashboard";
+    let query = "";
+
+    const esc = (value) => String(value ?? "").replace(/[&<>\"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+
+    function save() {
+      localStorage.setItem("driveflow-data", JSON.stringify(data));
+    }
+
+    function renderNav() {
+      const items = [["dashboard", "Overview"], ...Object.keys(modules).map((key) => [key, modules[key].title])];
+      document.getElementById("nav").innerHTML = items.map(([key, label]) =>
+        `<button class="${current === key ? "active" : ""}" data-page="${key}" type="button">${label}</button>`
+      ).join("");
+
+      document.querySelectorAll("[data-page]").forEach((button) => {
+        button.addEventListener("click", () => {
+          current = button.dataset.page;
+          query = "";
+          render();
+        });
+      });
+    }
+
+    function table(key, rows) {
+      const cols = modules[key].fields;
+
+      if (!rows.length) {
+        return '<div class="empty">No records yet. Select “Add new” to get started.</div>';
+      }
+
+      return `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                ${cols.map((col) => `<th>${esc(col)}</th>`).join("")}
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map((row) => `
+                <tr>
+                  ${cols.map((col) => `<td>${esc(row[col])}</td>`).join("")}
+                  <td><button class="delete" data-delete="${key}:${row.id}" type="button">Delete</button></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function dashboard() {
+      const today = new Date().toISOString().slice(0, 10);
+      const upcoming = data.lessons
+        .filter((item) => item["Date (YYYY-MM-DD)"] >= today)
+        .sort((a, b) => `${a["Date (YYYY-MM-DD)"]}${a.Time}`.localeCompare(`${b["Date (YYYY-MM-DD)"]}${b.Time}`));
+
+      return `
+        <div class="top">
+          <div>
+            <h1>Overview</h1>
+            <div class="muted">Driving school training activity at a glance.</div>
+          </div>
+        </div>
+        <div class="cards">
+          ${[["Students", data.students.length], ["Instructors", data.instructors.length], ["Vehicles", data.vehicles.length], ["Upcoming lessons", upcoming.length]]
+            .map(([label, value]) => `<div class="card"><div class="label">${label}</div><div class="number">${value}</div></div>`)
+            .join("")}
+        </div>
+        <section class="panel">
+          <h2>Upcoming lessons</h2>
+          ${upcoming.length ? table("lessons", upcoming.slice(0, 8)) : '<div class="empty">No upcoming lessons scheduled.</div>'}
+        </section>
+      `;
+    }
+
+    function render() {
+      renderNav();
+      const app = document.getElementById("app");
+
+      if (current === "dashboard") {
+        app.innerHTML = dashboard();
+        bindDeletes();
+        return;
+      }
+
+      const config = modules[current];
+      const rows = data[current].filter((row) =>
+        config.fields.some((field) => String(row[field] || "").toLowerCase().includes(query.toLowerCase()))
+      );
+
+      app.innerHTML = `
+        <div class="top">
+          <div>
+            <h1>${config.title}</h1>
+            <div class="muted">Manage student, instructor, and course records.</div>
+          </div>
+          <div>
+            <input class="search" id="search" placeholder="Search..." value="${esc(query)}" />
+            <button class="btn" id="addBtn" type="button">+ Add new</button>
+          </div>
+        </div>
+        ${table(current, rows)}
+      `;
+
+      const searchInput = document.getElementById("search");
+      if (searchInput) {
+        searchInput.addEventListener("input", (event) => {
+          query = event.target.value;
+          render();
+          requestAnimationFrame(() => document.getElementById("search")?.focus());
+        });
+      }
+
+      document.getElementById("addBtn")?.addEventListener("click", () => openModal(current));
+      bindDeletes();
+    }
+
+    function bindDeletes() {
+      document.querySelectorAll("[data-delete]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const [key, id] = button.dataset.delete.split(":");
+          if (confirm("Delete this record?")) {
+            data[key] = data[key].filter((row) => String(row.id) !== id);
+            save();
+            render();
+          }
+        });
+      });
+    }
+
+    function openModal(key) {
+      const title = modules[key].title;
+      document.getElementById("modalTitle").textContent = "Add " + title.slice(0, -1);
+      document.getElementById("formFields").innerHTML = modules[key].fields.map((field, index) =>
+        `<label>${esc(field)}<input name="field${index}" required placeholder="${esc(field)}" /></label>`
+      ).join("");
+
+      const modalBg = document.getElementById("modalBg");
+      modalBg.style.display = "flex";
+      modalBg.setAttribute("aria-hidden", "false");
+
+      document.getElementById("recordForm").onsubmit = (event) => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const record = { id: Date.now() };
+
+        modules[key].fields.forEach((field, index) => {
+          record[field] = form.get("field" + index).toString().trim();
+        });
+
+        if (key === "lessons") {
+          const conflict = data.lessons.some((item) =>
+            item["Date (YYYY-MM-DD)"] === record["Date (YYYY-MM-DD)"] &&
+            item.Time === record.Time &&
+            (item.Instructor === record.Instructor || item.Batch === record.Batch)
+          );
+
+          if (conflict && !confirm("This may conflict with another lesson time. Save anyway?")) {
+            return;
+          }
+        }
+
+        data[key].push(record);
+        save();
+        modalBg.style.display = "none";
+        modalBg.setAttribute("aria-hidden", "true");
+        render();
+      };
+    }
+
+    document.getElementById("cancelBtn").addEventListener("click", () => {
+      const modalBg = document.getElementById("modalBg");
+      modalBg.style.display = "none";
+      modalBg.setAttribute("aria-hidden", "true");
+    });
+
+    document.getElementById("modalBg").addEventListener("click", (event) => {
+      if (event.target.id === "modalBg") {
+        event.currentTarget.style.display = "none";
+        event.currentTarget.setAttribute("aria-hidden", "true");
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
+
+
